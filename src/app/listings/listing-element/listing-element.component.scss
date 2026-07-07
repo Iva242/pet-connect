@@ -1,0 +1,69 @@
+// .listing-card {
+//   ion-avatar {
+//     width: 56px;
+//     height: 56px;
+//     img {
+//       object-fit: cover;
+//       width: 100%;
+//       height: 100%;
+//     }
+//   }
+// }
+
+.listing-card {
+  align-items: flex-start; /* Ovo je najbitnije: slaže elemente od vrha, ne po centru */
+  padding-top: 10px;       /* Malo vazduha gore da ne bude sabijeno */
+  
+  ion-label {
+    white-space: normal !important; /* Da se tekst lepo prelama */
+    margin-right: 10px;             /* Osigurava da cena ne "gazi" datum */
+    flex: 1;                        /* Daje labeli prostora da diše */
+  }
+
+  .price-badge {
+    flex-shrink: 0;                 /* Sprečava da se cena smanjuje/sabija */
+    margin-top: 4px;                /* Poravnaj ga vizuelno sa prvim redom teksta */
+  }
+}
+
+.badges {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* 1. OVO JE ZA DESNU STRANU - da slaže sve jedno ispod drugog i lepi desno */
+.right-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* SVE GURA NA DESNO */
+  gap: 4px;
+}
+
+/* 2. OVO JE DA POPRAVIMO ONIH PAR STVARI */
+.badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end; /* Osigurava da se i bedževi slažu desno */
+}
+
+/* 3. Vrati ion-label u normalu (ako je nešto ostalo od ranije) */
+.listing-card ion-label {
+  display: block !important; /* Vraća standardni raspored */
+}
+
+/* Ostatak tvog koda za avatare i ostalo ostavi kako je bilo */
+.listing-card {
+  ion-avatar {
+    width: 56px;
+    height: 56px;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

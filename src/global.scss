@@ -1,0 +1,339 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+
+
+@import '@ionic/angular/css/palettes/dark.system.css';
+
+html {
+  color-scheme: light; /* Ovo tera aplikaciju da ignoriše Dark Mode telefona */
+}
+
+ion-content {
+  --background: var(--app-background-color) !important;
+  /* Vraćamo padding koji Ionic inače ima automatski, 
+     a koji smo možda "ubili" sa !important */
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+/* 1. Nateraj listu da bude providna */
+ion-list {
+  background: transparent !important;
+}
+/* Dodaj ovo da osiguraš da sve liste i kartice imaju prostora sa strane */
+ion-list {
+  background: transparent !important;
+  margin: 0 16px !important; /* Ovo gura listu od ivica */
+}
+
+/* 2. Nateraj iteme (koji su unutar liste) da budu providni */
+ion-item, ion-item-sliding {
+  --background: transparent !important;
+  background: transparent !important;
+}
+/* Tvoja originalna klasa koja radi */
+.pet-card {
+  margin: 12px 16px;
+  padding: 16px;
+  background: #ffffff !important;
+  border-radius: 24px;
+  box-shadow: 0 8px 20px 2px rgba(0, 0, 0, 0.1) !important;
+  border: 2px solid var(--ion-color-primary);
+  display: block; /* Osigurava da se lepo ponaša u listi */
+}
+
+/* 3. Tvoja originalna kartica se sada primenjuje direktno na element */
+// .pet-card {
+//   display: block;
+//   margin: 12px 16px !important;
+//   padding: 16px !important;
+//   background: #ffffff !important;
+//   border-radius: 24px !important;
+//   box-shadow: 0 8px 20px 2px rgba(0, 0, 0, 0.1) !important;
+//   border: 2px solid var(--ion-color-primary) !important;
+// }
+.pet-card {
+  margin: 12px 16px !important;
+  background: #ffffff !important;
+  border-radius: 24px !important;
+  box-shadow: 0 8px 20px 2px rgba(0, 0, 0, 0.1) !important;
+  border: 2px solid var(--ion-color-primary) !important;
+  
+  /* Ovo uklanja Ionic-ov podrazumevani padding i border sa ion-item-a unutar komponente */
+  --padding-start: 0 !important;
+  --inner-padding-end: 0 !important;
+  --border-style: none !important;
+}
+
+
+.listing-card {
+  margin: 10px 16px;
+  padding: 16px;
+  background: #ffffff !important;
+  border-radius: 16px;
+  /* Senka za lebdenje na krem pozadini */
+  box-shadow: 0 6px 18px 1px rgba(0, 0, 0, 0.09) !important;
+  border: 2px solid var(--ion-color-secondary);
+}
+.application-card {
+  margin: 12px 16px;
+  padding: 16px;
+  background: #ffffff !important;
+  border-radius: 24px;
+  /* Senka identična kao kod ostalih kartica */
+  box-shadow: 0 8px 20px 2px rgba(0, 0, 0, 0.1) !important;
+  /* Zeleni okvir za prijave */
+  border: 2px solid var(--ion-color-primary);
+}
+
+ion-toolbar {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-dark);
+  text-align: start !important;
+  ion-title {
+    position: static !important; /* Ovo je ključ: skida ga sa centralne pozicije */
+    text-align: start !important;
+    padding-left: 0 !important; /* Brišemo preveliki padding */
+    margin-left: 10px !important; /* Mali razmak od menija */
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+ * "Šapica" — potpisni vizuelni element aplikacije: bedž sa ikonicom šape i
+ * cena po satu, korišćen na kartici oglasa i na detaljima oglasa.
+ * --------------------------------------------------------------------------- */
+.price-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--pc-badge-bg);
+  color: var(--pc-badge-text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+
+  ion-icon {
+    font-size: 1rem;
+  }
+}
+
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(224, 178, 60, 0.18);
+  color: var(--ion-color-warning-shade);
+  font-weight: 600;
+  font-size: 0.8rem;
+
+  ion-icon {
+    font-size: 0.95rem;
+  }
+}
+
+
+/* Chip za uslugu/grad */
+.pc-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--ion-color-light);
+  color: var(--ion-color-dark);
+  border: 1px solid var(--ion-color-light-shade);
+}
+
+/* Bedž za status rezervacije */
+.status-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.status-chip--pending {
+  background: rgba(224, 178, 60, 0.18);
+  color: var(--ion-color-warning-shade);
+}
+
+.status-chip--confirmed {
+  background: rgba(63, 143, 94, 0.15);
+  color: var(--ion-color-success-shade);
+}
+
+.status-chip--cancelled {
+  background: rgba(193, 70, 58, 0.12);
+  color: var(--ion-color-danger-shade);
+}
+
+/* Praznina liste */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--ion-color-medium);
+}
+
+.empty-state ion-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.6;
+}
+/* Stil za zaobljeni okvir oko menija */
+ion-toolbar {
+  ion-menu-button {
+    /* Uokvirivanje */
+    border: 1px solid var(--ion-color-primary) !important;
+    border-radius: 12px !important;
+    
+    /* Veličina */
+    width: 35px !important;
+    height: 35px !important;
+    
+    /* Centriranje ikone unutar okvira */
+    --padding-start: 0 !important;
+    --padding-end: 0 !important;
+    
+    /* Boja ikone (tri crtice) */
+    --color: var(--ion-color-primary) !important;
+    
+    /* Razmak od leve ivice */
+    margin-left: 12px !important;
+  }
+}
+// ===========================================================================
+// POPRAVLJENI DEO: Centriran izgled samo za unutrašnji sadržaj na desktopu
+// ===========================================================================
+/* Globalna pozadina za mobilne (i sve ostalo) */
+ion-content {
+  --background: var(--app-background-color); 
+}
+@media (min-width: 768px) {
+  
+  ion-content {
+    // Vidim da ti se slika zove glavna.jpg, pa ostavljamo tako!
+    --background: url('./assets/glavna2.jpg') center / cover no-repeat fixed !important;
+
+    // Skupljamo SAMO središnji deo na komotnih 1050px širine
+    &::part(scroll) {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--app-background-color) !important; // Ovde koristi varijablu 
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.15); 
+      border-left: 1px solid rgba(0, 0, 0, 0.08);
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+    }
+  }
+  .menu-user-footer {
+  background: var(--ion-color-light);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 8px 4px;
+
+  .user-profile-item {
+    --background: transparent;
+    
+    ion-icon {
+      font-size: 2rem;
+      color: var(--ion-color-primary);
+    }
+
+    p {
+      font-size: 0.75rem;
+      color: var(--ion-color-medium);
+      margin-bottom: 2px;
+    }
+
+    h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ion-color-dark);
+      margin: 0;
+    }
+  }
+}
+}
+
+  
+/* Ovo će se pojaviti samo kad je strana prazna */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--ion-color-dark) !important;
+  opacity: 0.3; /* Diskretno, da ne smeta */
+}
+/* Donja navigaciona traka (Tab Bar) */
+ion-tab-bar {
+  --background: var(--ion-color-light) !important; 
+  border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+  /* Uklonili smo position: fixed i width 100% da ne bi seklo sadržaj */
+}
+
+/* Stil za ikonice da ne budu svetle/isprane */
+ion-tab-button {
+  --color: #897d72 !important;        /* Tamnija siva za neaktivne (bila je previše svetla) */
+  --color-selected: var(--ion-color-primary) !important; /* Tvoja roze za aktivne */
+  
+  /* Ovo osigurava da ikonica ne izgubi boju kad je klikneš */
+  &.tab-selected {
+    --color: var(--ion-color-primary) !important;
+  }
+}
+
+/* Ovim ciljamo samo iteme koji su u listi prijava, 
+   bez diranja HTML-a ili drugih stranica */
+ion-list.applications-list ion-item {
+  --background: #ffffff !important;
+  margin: 12px 16px !important;
+  border-radius: 24px !important;
+  border: 2px solid var(--ion-color-success) !important;
+  box-shadow: 0 8px 20px 2px rgba(0, 0, 0, 0.1) !important;
+  --border-style: none !important;
+  --padding-start: 16px !important;
+}
+

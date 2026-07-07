@@ -1,0 +1,46 @@
+<!-- <ion-item lines="full" detail="false" class="listing-card">
+  <ion-avatar slot="start">
+    <img [src]="firstPetImage" [alt]="petNamesLabel" />
+  </ion-avatar>
+
+  <ion-label>
+    <h2>{{ petNamesLabel }}</h2>
+    <p class="badges">
+      <span class="pc-chip">{{ listing.dateFrom | date:'dd.MM.' }} – {{ listing.dateTo | date:'dd.MM.yyyy' }}</span>
+      @if (listing.status === 'Zatvoren') {
+        <span class="status-chip status-chip--cancelled">Zatvoren</span>
+      }
+    </p>
+  </ion-label>
+
+  <span class="price-badge" slot="end">
+    <ion-icon name="paw"></ion-icon>
+    {{ listing.price }} RSD
+  </span>
+</ion-item> -->
+
+
+<ion-item lines="full" detail="false" class="listing-card">
+  <ion-avatar slot="start">
+    <img [src]="firstPetImage" [alt]="petNamesLabel" />
+  </ion-avatar>
+
+  <ion-label>
+    <h2>{{ petNamesLabel }}</h2>
+  </ion-label>
+
+  <!-- Ovaj kontejner držimo na desnoj strani (slot="end") -->
+  <div slot="end" class="right-content">
+    <span class="price-badge">
+      <ion-icon name="paw"></ion-icon>
+      {{ listing.price }} RSD
+    </span>
+    
+    <div class="badges">
+      <span class="pc-chip">{{ listing.dateFrom | date:'dd.MM.' }} – {{ listing.dateTo | date:'dd.MM.yyyy' }}</span>
+      @if (listing.status === 'Zatvoren') {
+        <span class="status-chip status-chip--cancelled">Zatvoren</span>
+      }
+    </div>
+  </div>
+</ion-item>

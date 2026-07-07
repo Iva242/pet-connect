@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/listings/tabs/explore"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalji oglasa</ion-title>
+    <ion-buttons slot="end">
+      @if (isOwner) {
+        <ion-fab-button size="small" color="warning" (click)="onEditListing()">
+          <ion-icon name="pencil"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button size="small" color="danger" (click)="onDeleteListing()">
+          <ion-icon name="trash"></ion-icon>
+        </ion-fab-button>
+      }
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  @if (isLoading) {
+    <div class="ion-text-center">
+      <ion-spinner color="primary"></ion-spinner>
+    </div>
+  } @else if (listing) {
+    <ion-card>
+      <ion-card-header>
+        <span class="price-badge">
+          <ion-icon name="paw"></ion-icon>
+          {{ listing.price }} RSD
+        </span>
+        <ion-card-title>
+          {{ listing.dateFrom | date:'dd.MM.yyyy' }} – {{ listing.dateTo | date:'dd.MM.yyyy' }}
+        </ion-card-title>
+        @if (listing.status === 'Zatvoren') {
+          <span class="status-chip status-chip--cancelled">Zatvoren</span>
+        }
+      </ion-card-header>
+      <ion-card-content>
+        @if (listing.note) {
+          <p>{{ listing.note }}</p>
+        }
+
+        <h3>Ljubimci kojima treba čuvar</h3>
+        @for (pet of listing.pets; track pet.id) {
+          <app-pet-element [pet]="pet"></app-pet-element>
+        }
+      </ion-card-content>
+    </ion-card>
+
+    @if (!isOwner) {
+      <ion-card>
+        <ion-card-content>
+          @if (myApplication === undefined) {
+            <!-- proveravamo da li si se vec prijavila -->
+          } @else if (myApplication) {
+            <p>
+              Tvoja prijava:
+              <span [class]="statusClass(myApplication.status)">{{ myApplication.status }}</span>
+            </p>
+            @if (myApplication.message) {
+              <p class="muted">Tvoja poruka: {{ myApplication.message }}</p>
+            }
+          } @else if (listing.status === 'Zatvoren') {
+            <p class="ion-text-center muted">Ovaj oglas je zatvoren — vlasnik je već pronašao čuvara.</p>
+          } @else {
+            <ion-button expand="block" color="primary" (click)="onApply()">
+              <ion-icon name="mail-outline" slot="start"></ion-icon>
+              Prijavi se za čuvanje
+            </ion-button>
+          }
+        </ion-card-content>
+      </ion-card>
+    } @else {
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Prijave ({{ applications.length }})</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          @if (applications.length === 0) {
+            <p class="ion-text-center muted">Još niko nije poslao prijavu za ovaj oglas.</p>
+          } @else {
+            @for (app of applications; track app.id) {
+              <div class="application-row">
+                <div class="application-row__info">
+                  <p class="sitter-name">
+                    {{ app.sitterProfile ? (app.sitterProfile.name + ' ' + app.sitterProfile.surname) : 'Korisnik' }}
+                  </p>
+                  @if (app.message) {
+                    <p class="muted">{{ app.message }}</p>
+                  }
+                  <span [class]="statusClass(app.status)">{{ app.status }}</span>
+                </div>
+                @if (app.status === 'Na čekanju') {
+                  <div class="application-row__actions">
+                    @if (listing.status === 'Otvoren') {
+                      <ion-button size="small" fill="clear" color="success" (click)="onAccept(app)">
+                        <ion-icon name="checkmark-circle" slot="icon-only"></ion-icon>
+                      </ion-button>
+                    }
+                    <ion-button size="small" fill="clear" color="danger" (click)="onReject(app)">
+                      <ion-icon name="close-circle" slot="icon-only"></ion-icon>
+                    </ion-button>
+                  </div>
+                }
+              </div>
+            }
+          }
+        </ion-card-content>
+      </ion-card>
+    }
+  } @else {
+    <div class="empty-state">
+      <p>Oglas ne postoji ili je uklonjen.</p>
+    </div>
+  }
+</ion-content>

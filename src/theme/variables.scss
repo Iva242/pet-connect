@@ -1,0 +1,71 @@
+
+// :root {
+//   --ion-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+//   --app-background-color: #fbf8ea;
+//   --ion-color-primary: #eba1a1;    /* Pastelno roze */
+//   --ion-color-secondary: #76c3c3;  /* Pastelno tirkizno/plava */
+//   --ion-color-tertiary: #f7f7c0;   /* Pastelno žuta */
+//   --ion-color-success: #74bf74;    /* Pastelno zelena */
+//   --ion-color-warning: #eab47e;    /* Pastelno narandžasta */
+  
+//   --ion-color-light: #FAFAFA;      /* Skoro bela pozadina */
+//   --ion-color-dark: #1c1616;       /* Mekana siva za tekst */
+  
+//   /* Signature element */
+//   --pc-badge-bg: var(--ion-color-secondary);
+//   --pc-badge-text: #ffffff;
+// }
+:root {
+  --ion-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --app-background-color: #fbf8ea;
+
+  /* Tvoje pastelne boje */
+  --ion-color-primary: #eba1a1;
+  --ion-color-primary-rgb: 235,161,161;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-shade: #cf8e8e;
+
+  --ion-color-secondary: #76c3c3;
+  --ion-color-secondary-rgb: 118,195,195;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-shade: #68abab;
+
+  --ion-color-tertiary: #e5e5c9;
+  --ion-color-tertiary-rgb: 247,247,192;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-shade: #d9d9a9;
+
+  /* Ostale boje za global.scss */
+  --ion-color-success: #77c477;
+  --ion-color-success-rgb: 116,191,116;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-shade: #66a866;
+
+  --ion-color-warning: #eab47e;
+  --ion-color-warning-rgb: 234,180,126;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-shade: #ce9e6f;
+
+  --ion-color-danger: #C1463A;
+  --ion-color-danger-rgb: 193,70,58;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-shade: #aa3d33;
+
+  --ion-color-light: #fafafa; // #FAFAFA
+  --ion-color-light-rgb: 250,250,250;
+  --ion-color-light-shade: #dcdcdc;
+
+  --ion-color-medium: #000000;
+  --ion-color-medium-rgb: 137,125,114;
+
+  --ion-color-dark: #1c1616;
+  --ion-color-dark-rgb: 28,22,22;
+  --ion-color-dark-contrast: #ffffff;
+
+  /* Signature element */
+  --pc-badge-bg: var(--ion-color-secondary);
+  --pc-badge-text: #ffffff;
+}
+
+
+

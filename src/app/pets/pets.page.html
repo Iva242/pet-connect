@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Moji ljubimci</ion-title>
+    <ion-buttons slot="end">
+      <ion-fab-button size="small" color="primary" (click)="openAddModal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (pets.length === 0) {
+  <div class="empty-state">
+    <ion-icon name="paw-outline"></ion-icon>
+    <p>Još nisi dodala nijednog ljubimca. Dodaj prvog dugmetom gore.</p>
+  </div>
+  } @else {
+  <ion-list>
+    @for (pet of pets; track pet.id) {
+    <ion-item-sliding #slidingItem>
+      <app-pet-element [pet]="pet"></app-pet-element>
+
+      <ion-item-options side="end">
+        <ion-item-option color="warning" (click)="onEdit(pet, slidingItem)">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-item-option>
+
+        <ion-item-option color="danger" (click)="onDelete(pet, slidingItem)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    }
+  </ion-list>
+  }
+</ion-content>

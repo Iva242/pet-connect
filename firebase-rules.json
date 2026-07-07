@@ -1,0 +1,36 @@
+{
+  "rules": {
+
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+
+    "pets": {
+      ".read": "auth != null",
+      ".indexOn": ["ownerId"],
+      "$petId": {
+        ".write": "auth != null && (!data.exists() || data.child('ownerId').val() === auth.uid) && (!newData.exists() || newData.child('ownerId').val() === auth.uid)"
+      }
+    },
+
+    "listings": {
+      ".read": "auth != null",
+      ".indexOn": ["ownerId"],
+      "$listingId": {
+        ".write": "auth != null && (!data.exists() || data.child('ownerId').val() === auth.uid) && (!newData.exists() || newData.child('ownerId').val() === auth.uid)"
+      }
+    },
+
+    "applications": {
+      ".read": "auth != null",
+      ".indexOn": ["listingId", "sitterId"],
+      "$applicationId": {
+        ".write": "auth != null && ((!data.exists() && newData.child('sitterId').val() === auth.uid) || (data.exists() && (data.child('sitterId').val() === auth.uid || data.child('listingOwnerId').val() === auth.uid)))"
+      }
+    }
+
+  }
+}

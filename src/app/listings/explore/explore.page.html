@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Oglasi za čuvanje</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (visibleListings.length === 0) {
+    <div class="empty-state">
+      <ion-icon name="paw-outline"></ion-icon>
+      <p>Trenutno nema otvorenih oglasa za čuvanje. Navrati kasnije!</p>
+    </div>
+  } @else {
+    <ion-list>
+      @for (listing of visibleListings; track listing.id) {
+        <app-listing-element
+          [listing]="listing"
+          [routerLink]="['/', 'listings', 'tabs', 'explore', listing.id]"
+        ></app-listing-element>
+      }
+    </ion-list>
+  }
+</ion-content>

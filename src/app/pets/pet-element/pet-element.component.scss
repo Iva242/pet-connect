@@ -1,0 +1,18 @@
+.pet-card {
+  ion-avatar {
+    width: 56px;
+    height: 56px;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.badges {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}

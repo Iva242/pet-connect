@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+  <form (ngSubmit)="onSave()" #f="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-select
+              label="Za koje ljubimce treba čuvar?"
+              label-placement="floating"
+              [ngModel]="selectedPetIds"
+              name="petIds"
+              multiple="true"
+              required
+            >
+              @for (pet of myPets; track pet.id) {
+                <ion-select-option [value]="pet.id">{{ pet.name }} ({{ pet.vrsta }})</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      @if (myPets.length === 0) {
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="3">
+            <p style="color: var(--ion-color-danger);">
+              Nemaš nijednog dodatog ljubimca. Prvo dodaj ljubimca na tabu "Ljubimci".
+            </p>
+          </ion-col>
+        </ion-row>
+      }
+
+      <ion-row>
+        <ion-col size-sm="3" offset-sm="3">
+          <ion-item>
+            <ion-input
+              type="date"
+              label="Od kog datuma"
+              label-placement="floating"
+              [ngModel]="dateFrom"
+              name="dateFrom"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="3">
+          <ion-item>
+            <ion-input
+              type="date"
+              label="Do kog datuma"
+              label-placement="floating"
+              [ngModel]="dateTo"
+              name="dateTo"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-input
+              type="number"
+              label="Koliko nudiš (RSD, za ceo period)"
+              label-placement="floating"
+              [ngModel]="price"
+              name="price"
+              required
+              min="0"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-textarea
+              label="Napomena (opciono)"
+              label-placement="floating"
+              rows="3"
+              [ngModel]="note"
+              name="note"
+            ></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-button
+            type="submit"
+            color="primary"
+            expand="block"
+            [disabled]="!f.valid || myPets.length === 0"
+          >
+            Sačuvaj
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

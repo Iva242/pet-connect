@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registracija</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="3" offset-sm="3">
+          <ion-item>
+            <ion-input type="text" formControlName="name" label="Ime" labelPlacement="floating"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="3">
+          <ion-item>
+            <ion-input type="text" formControlName="surname" label="Prezime" labelPlacement="floating"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-input type="email" formControlName="email" label="Email" labelPlacement="floating"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      @if (registerForm.get('email')!.invalid && registerForm.get('email')!.touched) {
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="3">
+            <p class="ion-color-danger">Unesite ispravnu email adresu.</p>
+          </ion-col>
+        </ion-row>
+      }
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-input type="password" formControlName="password" label="Lozinka" labelPlacement="floating"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      @if (registerForm.get('password')!.invalid && registerForm.get('password')!.touched) {
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="3">
+            <p>Lozinka mora imati najmanje 7 karaktera.</p>
+          </ion-col>
+        </ion-row>
+      }
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-button type="submit" color="primary" shape="round" expand="block" [disabled]="registerForm.invalid">
+            Registruj se
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size-sm="6" class="ion-text-center">
+          <ion-button fill="clear" routerLink="/log-in">
+            Već imaš nalog? Prijavi se
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

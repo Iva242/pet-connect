@@ -1,0 +1,70 @@
+<ion-app>
+  
+  <ion-menu side="start" contentId="main">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Pet Connect</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list lines="none">
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/listings/tabs/explore">
+            <ion-icon name="search" slot="start"></ion-icon>
+            <ion-label>Oglasi za čuvanje</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/listings/tabs/pets">
+            <ion-icon name="paw" slot="start"></ion-icon>
+            <ion-label>Moji ljubimci</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/listings/tabs/my-listings">
+            <ion-icon name="list-circle" slot="start"></ion-icon>
+            <ion-label>Moji oglasi</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/listings/tabs/my-applications">
+            <ion-icon name="mail-unread" slot="start"></ion-icon>
+            <ion-label>Moje prijave</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item lines="none" (click)="onLogOut()">
+            <ion-icon name="log-out" slot="start"></ion-icon>
+            <ion-label>Odjava</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+
+    <ion-footer class="menu-user-footer">
+      <ion-item lines="none" class="user-profile-item">
+        <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+        <ion-label>
+          <p>Prijavljeni korisnik</p>
+          <h2
+            style="
+              font-size: 0.85rem;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            "
+          >
+            {{ korisnikIme }}
+          </h2>
+        </ion-label>
+      </ion-item>
+    </ion-footer>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

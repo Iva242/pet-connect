@@ -1,0 +1,19 @@
+<ion-item lines="full" detail="false" class="pet-card">
+  <ion-avatar slot="start">
+    <img [src]="pet.imageUrl" [alt]="pet.name" />
+  </ion-avatar>
+
+  <ion-label>
+    <h2>{{ pet.name }}</h2>
+    <p class="badges">
+      <span class="pc-chip">{{ pet.vrsta }}</span>
+      @if (pet.rasa) {
+        <span class="pc-chip">{{ pet.rasa }}</span>
+      }
+      @if (pet.starost) {
+        <!-- Pozivamo funkciju koja pametno ispisuje godine ili mesece -->
+        <span class="pc-chip">{{ formatujStarost(pet.starost) }}</span>
+      }
+    </p>
+  </ion-label>
+</ion-item>
